@@ -3,23 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package activity2;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.*;
 
 /**
  *
  * @author Ryan Schissel
  */
-@WebServlet(name = "PageGenerator", urlPatterns = {"/pager"})
-public class PageGenerator extends HttpServlet {
-
+@WebServlet(name = "WelcomeController", urlPatterns = {"/greeter"})
+public class WelcomeController extends HttpServlet {
+private static final String RESULT_PAGE = "results.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,35 +33,16 @@ public class PageGenerator extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO; output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PageGenerator</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<table>");
-            for (int i = 0; i < 3; i++){
-                out.println("<tr>");
-                for(int j =0; j < 3;j++){
-                    out.println("<td>");
-                    out.println(i + "/" + j);
-                    out.println("</td>");
-                }
-                out.println("</tr>");
-                
-            }
-            out.println("</table>");
-            out.println("<h1>Servlet PageGenerator at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-        catch (Exception e){
-            
-        }
+        response.setContentType("text/html");
+        String c = request.getParameter("nameEntry");
+        WelcomeService ws = new WelcomeService();
+        String result = ws.getMessage(ws.getTimeOfDay(), c);
+        
+        request.setAttribute("welcomeMessage", result);
+        
+        RequestDispatcher view =
+                request.getRequestDispatcher(RESULT_PAGE);
+        view.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
