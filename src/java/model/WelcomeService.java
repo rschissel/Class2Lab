@@ -14,12 +14,12 @@ import java.util.Calendar;
 public class WelcomeService {
     Calendar callie = Calendar.getInstance();
     
-    public String getTimeOfDay(){
+    public final String getTimeOfDay(){
         int hour = callie.get(Calendar.HOUR_OF_DAY);
         if (hour >= 1 && hour <= 11){
             return "morning";
         }
-        else if (hour <=15){
+        else if (hour <=13){
             return "afternoon";
         }
         else if (hour <=20){
@@ -27,8 +27,8 @@ public class WelcomeService {
         }
         return null;
     }
-    public String getMessage(String name){
-        StringBuilder sb = new StringBuilder();
+    public final String getMessage(String name){
+        StringBuffer sb = new StringBuffer();
         sb.append("Good ");
         sb.append(getTimeOfDay());
         sb.append(", ");
