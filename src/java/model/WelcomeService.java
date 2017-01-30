@@ -27,10 +27,10 @@ public class WelcomeService {
         }
         return null;
     }
-    public String getMessage(String time, String name){
+    public String getMessage(String name){
         StringBuilder sb = new StringBuilder();
         sb.append("Good ");
-        sb.append(time);
+        sb.append(getTimeOfDay());
         sb.append(", ");
         sb.append(name);
         sb.append(". ");

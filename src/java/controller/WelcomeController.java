@@ -36,7 +36,7 @@ private static final String RESULT_PAGE = "results.jsp";
         response.setContentType("text/html");
         String c = request.getParameter("nameEntry");
         WelcomeService ws = new WelcomeService();
-        String result = ws.getMessage(ws.getTimeOfDay(), c);
+        String result = ws.getMessage(c);
         
         request.setAttribute("welcomeMessage", result);
         
