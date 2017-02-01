@@ -43,7 +43,9 @@ private static final String ERR_PAGE = "errorpage.html";
         request.setAttribute("welcomeMessage", result);
         }
         catch(Exception e){
-            
+             RequestDispatcher view =
+                request.getRequestDispatcher(ERR_PAGE);
+        view.forward(request, response);
         }
         RequestDispatcher view =
                 request.getRequestDispatcher(RESULT_PAGE);
