@@ -22,6 +22,7 @@ import model.*;
 @WebServlet(name = "WelcomeController", urlPatterns = {"/greeter"})
 public class WelcomeController extends HttpServlet {
 private static final String RESULT_PAGE = "results.jsp";
+private static final String ERR_PAGE = "errorpage.html";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,12 +35,16 @@ private static final String RESULT_PAGE = "results.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
+        try{
         String c = request.getParameter("nameEntry");
         WelcomeService ws = new WelcomeService();
         String result = ws.getMessage(c);
         
         request.setAttribute("welcomeMessage", result);
-        
+        }
+        catch(Exception e){
+            
+        }
         RequestDispatcher view =
                 request.getRequestDispatcher(RESULT_PAGE);
         view.forward(request, response);

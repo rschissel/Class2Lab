@@ -13,14 +13,8 @@
     </head>
     <body>
         <h1>Results Page</h1>
-        
-        <%
-        
-        Object obj = request.getAttribute("welcomeMessage");
-        out.print(obj.toString());
-        
-        // THIS CODE IS OVERLY COMPLICATED and FRAGILE!!!
-        // See result2.jsp for a better way
-    %>
+   
+    <p>${welcomeMessage}</p>
+    
     </body>
 </html>
