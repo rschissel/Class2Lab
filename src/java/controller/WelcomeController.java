@@ -41,15 +41,16 @@ private static final String ERR_PAGE = "errorpage.html";
         String result = ws.getMessage(c);
         
         request.setAttribute("welcomeMessage", result);
+         RequestDispatcher view =
+                request.getRequestDispatcher(RESULT_PAGE);
+        view.forward(request, response);
         }
         catch(Exception e){
              RequestDispatcher view =
                 request.getRequestDispatcher(ERR_PAGE);
         view.forward(request, response);
         }
-        RequestDispatcher view =
-                request.getRequestDispatcher(RESULT_PAGE);
-        view.forward(request, response);
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
